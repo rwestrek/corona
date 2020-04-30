@@ -2,8 +2,10 @@ from flask import Flask, session, render_template, request, redirect, jsonify, j
 from flask_session import Session
 from helpers import TopList, CountryList,HeadlinesPerCountry,CountryList,HistPerCountry,ConvertToList
 from helpers import ColorList,ListOfDates,HistPerCountryLong
+import os
 
 app = Flask(__name__)
+port = int(os.environ.get("PORT", 5000))
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
@@ -98,7 +100,7 @@ def compare(country):
         return render_template("apology.html", message="Method not allowed"), 405
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=port)
 
 #if __name__ == "__main__":
 #    app.run(debug = True, host="0.0.0.0", port=5000)
